@@ -12,7 +12,7 @@ Follow the instructions line-by-line.
 [NO OUTPUT]
 ----------
 ==========
-2. Find out if mtec1002-lab-02 already exists (from the previous lab).  If it doesn't, go back to the previous lab and find the steps regarding downloading the lab materials.
+2. Find out if mtec1002-lab-03 already exists (from the previous lab).  If it doesn't, go back to the previous lab and find the steps regarding downloading the lab materials.
 
 (See steps 1-8 in http://foureyes.github.io/mtec1002-spring2014/labs/03/lab-03-part-02-working-with-files.txt)
 [NO OUTPUT]
@@ -37,7 +37,9 @@ $ ls
 Copy and paste the output below.
 ----------
 
-
+Nafiss-MacBook-Pro:my_files admin$ touch foo.txt
+Nafiss-MacBook-Pro:my_files admin$ ls
+foo.txt
 
 ==========
 7. Create another new file using touch.
@@ -45,15 +47,19 @@ Copy and paste the output below.
 $ touch bar.txt
 ----------
 
-
+Nafiss-MacBook-Pro:my_files admin$ touch bar.txt
+Nafiss-MacBook-Pro:my_files admin$ ls
+bar.txt
 
 ==========
 8. List the files in this directory using the flag that gives the most details.
 
 Copy and paste the output below.
 ----------
-
-
+ls -l
+total 0
+-rw-r--r--  1 admin  staff  0 Sep 22 19:41 bar.txt
+-rw-r--r--  1 admin  staff  0 Sep 22 19:39 foo.txt
 
 ==========
 9. Create a copy of bar.txt called baz.txt and then list the files again.
@@ -76,7 +82,9 @@ Write the command that you used to remove the file.  Copy and paste the output o
 Write the command that you used to move the file.  Copy and paste the output of your file listing below.
 ----------
 
-
+mv foo.txt qux.txt
+ls
+bar.txt	qux.txt
 
 ==========
 12. Go up one directory so that you're in ~/mtec1002-lab-03.
@@ -91,7 +99,8 @@ Write the command that you used to move the file.  Copy and paste the output of 
 Write out the command that you used and what happened.
 ----------
 
-
+ rmdir my_files
+rmdir: my_files: Directory not empty
 
 ==========
 14. Try removing the directory called my_files using rm.
@@ -99,7 +108,8 @@ Write out the command that you used and what happened.
 Write out the command that you used and what happened.
 ----------
 
-
+rm my_files
+rm: my_files: is a directory
 
 ==========
 15. MAKE SURE YOU'RE IN THE mtec1002-lab-03 directory!  
@@ -109,8 +119,9 @@ Force the removal of the directory and files using the -rf flag
 $ rm -rf my_files
 ----------
 
-
-
+rm -rf my_files
+ls
+books	logs	web
 ==========
 16. There's a txt file version of a book located in the mtec1002-lab-03 folder.  It is in the following directory if you're in the lab folder:
 
@@ -120,8 +131,8 @@ Use the command called cat on the file to show its contents.
 
 Describe what happened below.
 ----------
-
-
+cat books/other/pg1232.txt
+after pressing <ENTER> all of the book's contents are displayed.
 
 ==========
 17. That was a lot of text.  Let's find ways to limit it.  Using the same file...
@@ -133,7 +144,8 @@ Use the command, head, on the file to show the contents of the beginning of the 
 Write the command that you used below.  Write the last line of the output below (it should be the title).
 ----------
 
-
+head books/other/pg1232.txt
+Title: The Prince
 
 ==========
 18. Using the same file again!
@@ -145,7 +157,12 @@ Use tail on the file to show the contents of the end of the file.
 Write the command that you used below.  Write the last line of the output below (it should be the title).
 ----------
 
+tail books/other/pg1232.txt
 
+This Web site includes information about Project Gutenberg-tm,
+including how to make donations to the Project Gutenberg Literary
+Archive Foundation, how to help produce our new eBooks, and how to
+subscribe to our email newsletter to hear about new eBooks.
 
 ==========
 19. Using the same file...
@@ -156,23 +173,48 @@ Use less and more on the file to show the contents of the file.  Try pressing sp
 
 Write the command that you used below.  Describe what spacebar and q does after using either less or more.
 ----------
+more books/other/pg1232.txt
 
-
-
+less books/other/pg1232.txt
+ visually it was difficult to identify much of a difference in the appearance using more and less. 
+ Both display smaller portions of the book page by page, and removes the command prompt. 
+ The spacebar acts as pagedown and q takes you back to the command prompt.
 ==========
 20. Describe what situations you would use the following commands for viewing files: less, more, cat, tail, head
 
 (Some characteristics that may help your description might be the length of the file, whether or not you'd like to read the whole thing... or just the beginning or end, etc.)
 ----------
 
+cat would allow you to view a files contents in its entirety. You could use this to see what's inside a file.
 
+head will only display the first several lines of text. You could use this to preview a file. 
+
+tail will only display the last several lines of text. You could use this to jump to the end of a file.
+
+more will pageinate the file and allow you to navigate page by page based on the document size. If the 
+file is small enough, it will display the entire document. 
+
+less will also pageinate the file and allow you to navigate page by page based on the document size. If the 
+file is large enough, it will only display portions of the document. It will always show the <END> message at the end of the output.
 
 ==========
 21.  How many words are in pg1232.txt?  What command did you use to determine the word count?
 ----------
 
-
+ wc -w books/other/pg1232.txt
+ 52639 books/other/pg1232.txt
 
 ==========
 22.  How many lines are in pg1232.txt?  What command did you use to determine the line count?
 ----------
+
+wc -l books/other/pg1232.txt
+5063 books/other/pg1232.txt
+==========
+OPTIONAL
+
+23.  Make sure you're in the books/other folder.  Copy all of the txt files from that folder to your home directory using wildcard matching.
+
+Write the command that you used below.
+----------
+cp *.txt ~
